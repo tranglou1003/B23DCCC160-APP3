@@ -1,97 +1,55 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# PulseChat
 
-# Getting Started
+Ứng dụng nhắn tin React Native dựa trên các màn hình Stitch được cung cấp. Dữ liệu hội thoại, danh bạ, thông báo và cài đặt là dữ liệu mẫu lưu trong bộ nhớ khi ứng dụng đang chạy; chưa cần máy chủ hoặc tài khoản thật.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Màn hình và chức năng
 
-## Step 1: Start Metro
+- **Đăng nhập:** xác thực dữ liệu nhập cơ bản, ghi nhớ đăng nhập, hiện/ẩn mật khẩu, đăng ký mẫu và điều hướng vào tin nhắn. Đăng nhập Google/Apple/Facebook hiển thị thông báo vì chưa kết nối nhà cung cấp.
+- **Tin nhắn:** tìm kiếm hội thoại, lọc tất cả/chưa đọc/nhóm/công việc, xem bạn bè trực tuyến, mở hội thoại và soạn tin mới.
+- **Danh bạ:** tìm theo tên hoặc số điện thoại, lọc trực tuyến/gần đây, bắt đầu cuộc trò chuyện và mô phỏng cuộc gọi.
+- **Thông báo:** lọc chưa đọc, đánh dấu đã đọc, chấp nhận/bỏ qua lời mời, mở nhóm và trả lời lượt nhắc.
+- **Cài đặt:** tìm mục cài đặt, bật/tắt các tùy chọn và xác nhận trước khi đăng xuất.
+- **Hội thoại:** gửi tin nhắn mẫu, trạng thái đã đọc, cuộc gọi mẫu và nút đính kèm.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Cấu trúc chính
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+```text
+src/chat/
+  ChatContext.tsx       Dữ liệu dùng chung và thao tác trạng thái
+  data.ts               Danh bạ, hội thoại, thông báo và ảnh mẫu
+  navigation.tsx        Điều hướng React Navigation
+  theme.ts              Màu sắc theo design tokens Stitch
+  components/Common.tsx Header, avatar, ô tìm kiếm, thanh tab
+  screens/              Login, Messages, Contacts, Notifications,
+                        Settings và Conversation
+```
+
+## Thư viện
+
+Các dependency đã có trong dự án: React Native, TypeScript, React Navigation Native Stack và Safe Area Context. Không cần cài thêm thư viện cho các màn hình này.
+
+## Chạy trên Android
+
+Cài Android Studio/Android SDK và môi trường theo [React Native environment setup](https://reactnative.dev/docs/set-up-your-environment). Từ thư mục dự án:
 
 ```sh
-# Using npm
+npm install
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
+Mở terminal khác để chạy emulator hoặc thiết bị Android đã bật USB debugging:
 
 ```sh
-# Using npm
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+Để chạy iOS trên macOS:
 
 ```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
+cd ios
 bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+cd ..
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Ảnh đại diện và logo mẫu được tải qua HTTPS; giao diện vẫn hiển thị avatar chữ thay thế nếu ảnh không tải được.
